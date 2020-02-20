@@ -1,0 +1,46 @@
+import.step1:
+  generate:
+    - data.middle.step1
+    - data.example.step1
+    - data.end.step1`
+  from:
+    - data.origin.import
+  execute:
+    command: 'file://qualifiednamespace'
+    parameters:
+      - input $from.[0]
+      - test nespresso
+  on_fail:
+    - stop
+
+generate.step2:
+  generate:
+    - data.middle.step2
+    - data.example.step2
+    - data.end.step2
+  from:
+    - data.middle.step1
+    - data.example.step1
+    - data.end.step1
+  execute:
+    command: file://qualifiednamespace
+    parameters:
+      - --input $from.[0]
+      - --input $from.[1]
+      - --input $from.[2]
+
+general.end2:
+  generate:
+    - data.middle.step3
+    - data.example.step3
+    - data.end.step3
+  from:
+    - data.middle.step2
+    - data.example.step2
+    - data.end.step2
+  execute:
+    command: file://qualifiednamespace
+    parameters:
+      - --input $from.[0]
+      - --input $from.[1]
+      - --input $from.[2]
