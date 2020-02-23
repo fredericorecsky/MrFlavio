@@ -1,0 +1,3 @@
+# runtime enviroment
+
+When executing a pipe, we should create a enviroment as described here.
